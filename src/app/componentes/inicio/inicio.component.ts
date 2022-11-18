@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormularioService } from 'src/app/servicios/formulario.service';
 
 @Component({
   selector: 'app-inicio',
@@ -10,7 +11,9 @@ export class InicioComponent implements OnInit {
   
   formulario:any;
 
-  constructor(private fb:FormBuilder ) { }
+  constructor(
+    private fb:FormBuilder,
+    private formularioSrv:FormularioService) { }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
@@ -25,6 +28,6 @@ export class InicioComponent implements OnInit {
     return this.formulario.controls;
   }
   botonEnviar(){
-    console.log(this.formulario);
+    this.formularioSrv.obtener_datos(this.formularioReactivo)
   }
 }
